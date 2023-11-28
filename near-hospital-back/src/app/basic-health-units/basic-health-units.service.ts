@@ -19,13 +19,20 @@ export class BasicHealthUnitsService {
             .execute();
     }
 
-    async GetFavoriteBasicHealthUnit(): Promise<BasicHealthUnitsEntity[]> {
-        return this.basicHealthUnitsRepository.createQueryBuilder('basicHealthUnit').getMany();
+    async getBasicHealthUnit(): Promise<BasicHealthUnitsEntity[]> {
+        return this.basicHealthUnitsRepository.find();
     }
 
-    async deleteBasicHealthUnitForUser(userId: string, basicHealthUnitId: string): Promise<DeleteResult> {
+    async getFavoriteBasicHealthUnit(userId: string): Promise<BasicHealthUnitsEntity | null> {
+        return this.basicHealthUnitsRepository
+            .createQueryBuilder('basicHealthUnit')
+            .where('basicHealthUnit.user_id = :userId', { userId })
+            .getOne();
+    }
+
+    async deleteBasicHealthUnitForUser(user_id: string, basicHealthUnitId: string): Promise<DeleteResult> {
         return this.basicHealthUnitsRepository.delete({
-            user: { user_id: userId },
+            user_id: { user_id: user_id },
             id: basicHealthUnitId
         });
     }

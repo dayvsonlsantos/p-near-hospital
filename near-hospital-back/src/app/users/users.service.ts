@@ -24,7 +24,7 @@ export class UsersService {
     // }
     
     async findAllUsers(): Promise<UsersEntity[]> {
-        return this.userRepository.find({ relations: ['basicHealthUnits'] });
+        return this.userRepository.find();
     }
 
     // Outra forma:
@@ -34,8 +34,7 @@ export class UsersService {
 
     async getBasicHealthUnits(userId: string): Promise<any> {
         return this.userRepository.findOne({
-            where: { user_id: userId },
-            relations: ['basicHealthUnits'],
+            where: { user_id: userId }
         });
     }
 

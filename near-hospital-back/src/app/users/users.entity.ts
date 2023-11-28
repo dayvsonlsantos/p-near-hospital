@@ -1,5 +1,5 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { BasicHealthUnitsEntity } from '../basic-health-units/basic-health-units.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+// import { BasicHealthUnitsEntity } from '../basic-health-units/basic-health-units.entity';
 
 @Entity({ name: 'users' })
 export class UsersEntity {
@@ -15,6 +15,6 @@ export class UsersEntity {
     @Column({ name: 'user_password', nullable: false })
     user_password: string;
 
-    @OneToMany(() => BasicHealthUnitsEntity, basicHealthUnit => basicHealthUnit.user)
-    basicHealthUnits: BasicHealthUnitsEntity[];
+    // @OneToMany(() => BasicHealthUnitsEntity, basicHealthUnit => basicHealthUnit.user)
+    // basicHealthUnits: BasicHealthUnitsEntity[];
 }
