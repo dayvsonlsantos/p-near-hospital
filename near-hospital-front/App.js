@@ -84,8 +84,15 @@ export default function App() {
   };
 
   function defineMapMode(value) {
-    setMapMode(value);
-    handleRouteButtonClick();
+    if (mapMode === value && mapMode != "") {
+      setPressedLocation({});
+      setDestinationLocation({});
+      setShowRouteButton(false);
+      setMapMode("");
+    } else {
+      setMapMode(value);
+      handleRouteButtonClick();
+    }
   }
 
   return (
