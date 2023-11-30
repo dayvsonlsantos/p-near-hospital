@@ -20,8 +20,10 @@ import { useEffect, useState, useRef } from "react";
 import MapViewDirections from "react-native-maps-directions";
 import Icon from "./components/Svg";
 import config from './config';
+import MedicalFacilities from './json/medicalFacilitiesRecife'
 
 export default function App() {
+
   const [location, setLocation] = useState(null);
 
   const [pressedLocation, setPressedLocation] = useState({});
@@ -78,9 +80,6 @@ export default function App() {
       // Atualiza o estado da localização de destino para iniciar a rota
       setDestinationLocation(pressedLocation);
     }
-    // if(destinationLocation) {
-    //   setDestinationLocation({})
-    // }
   };
 
   function defineMapMode(value) {
@@ -94,6 +93,21 @@ export default function App() {
       handleRouteButtonClick();
     }
   }
+
+  // Iterando sobre os registros
+  const markers = MedicalFacilities.records.map(record => {
+    const latitude = record[record.length - 2];
+    const longitude = record[record.length - 1];
+
+    return {
+      coordinate: {
+        latitude: latitude,
+        longitude: longitude,
+      },
+      title: record[2], // Ou qualquer índice correspondente ao título
+      description: record[8], // Ou qualquer índice correspondente à descrição
+    };
+  });
 
   return (
     <View className="border w-full h-screen">
@@ -154,22 +168,21 @@ export default function App() {
                   longitude: pressedLocation?.longitude || 0,
                 }}
               />
+              {markers.map((marker, index) => (
+                <Marker
+                  key={index}
+                  coordinate={marker.coordinate}
+                  title={marker.title}
+                  description={marker.description}
+                  onPress={handleMapPress}
+                />
+              ))}
             </MapView>
             <View className="absolute flex items-center w-full pt-12 h-16">
               <Navbar />
             </View>
             <View className="absolute flex items-center justify-end w-full h-full">
               {showRouteButton && (
-                //<Pressable
-                //  className="bg-green-near-light p-4 rounded-full h-16 w-4/6 flex items-center justify-center shadow-lg"
-                //  style={[styles.boxShadown, styles.androidShadow]}
-                //  onPress={handleRouteButtonClick}
-                //  accessibilityLabel="Clique para traçar a rota"
-                //>
-                //  <Text className="text-white text-lg font-bold">
-                //    Traçar Rota
-                //  </Text>
-                //</Pressable>
 
                 <View className="relative flex items-center justify-end w-full ">
                   <View className="mb-4 flex items-center justify-center w-4/6 h-28 bg-white rounded-2xl">
