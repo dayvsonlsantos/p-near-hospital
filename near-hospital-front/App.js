@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { Pressable, StyleSheet, Text, View, ActivityIndicator, Image } from 'react-native';
-import Navbar from './components/Navbar';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { StatusBar } from "expo-status-bar";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  ActivityIndicator,
+  Image,
+} from "react-native";
+import Navbar from "./components/Navbar";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import {
   requestForegroundPermissionsAsync,
   getCurrentPositionAsync,
   LocationObject,
   watchPositionAsync,
-  LocationAccuracy
-} from 'expo-location';
-import { useEffect, useState, useRef } from 'react';
-import MapViewDirections from 'react-native-maps-directions';
-import Svg from './components/Svg';
+  LocationAccuracy,
+} from "expo-location";
+import { useEffect, useState, useRef } from "react";
+import MapViewDirections from "react-native-maps-directions";
+import Svg from "./components/Svg";
+import config from './config';
 
 export default function App() {
-
   const [location, setLocation] = useState(null);
 
   const [pressedLocation, setPressedLocation] = useState({});
@@ -41,20 +48,22 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    watchPositionAsync({
-      accuracy: LocationAccuracy.Highest,
-      timeInterval: 1000,
-      distanceInterval: 1
-    }, (response) => {
-      setLocation(response);
-      mapRef.current?.animateCamera({
-        pitch: 10,
-        center: response.coords
-      })
-      setIsLoading(false);
-    });
-  }, [])
-
+    watchPositionAsync(
+      {
+        accuracy: LocationAccuracy.Highest,
+        timeInterval: 1000,
+        distanceInterval: 1,
+      },
+      (response) => {
+        setLocation(response);
+        mapRef.current?.animateCamera({
+          pitch: 10,
+          center: response.coords,
+        });
+        setIsLoading(false);
+      }
+    );
+  }, []);
 
   const handleMapPress = (event) => {
     const { latitude, longitude } = event.nativeEvent.coordinate;
@@ -62,15 +71,22 @@ export default function App() {
     setShowRouteButton(true);
   };
 
-  const handleRouteButtonClick = () => {
+  const [mapMode, setMapMode] = useState("DRIVING");
+
+  const handleRouteButtonClick = (value) => {
     if (pressedLocation) {
       // Atualiza o estado da localização de destino para iniciar a rota
-      setDestinationLocation(pressedLocation)
+      setDestinationLocation(pressedLocation);
     }
     // if(destinationLocation) {
     //   setDestinationLocation({})
     // }
   };
+
+  function defineMapMode(value) {
+    setMapMode(value);
+    handleRouteButtonClick();
+  }
 
   return (
     <View className="border w-full h-screen">
@@ -79,13 +95,17 @@ export default function App() {
           // Mostra um indicador de loading enquanto o mapa está sendo carregado
           <View className="w-full h-full">
             <View className="w-full h-1/2 flex items-center justify-center">
-              <Svg/>
+              <Svg />
             </View>
             <ActivityIndicator
               className="w-full h-1/2"
               size="large"
               color="#88C625"
-              style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             />
           </View>
         ) : (
@@ -105,8 +125,8 @@ export default function App() {
               provider={PROVIDER_GOOGLE}
               onPress={handleMapPress}
             >
-              {
-                destinationLocation.latitude && (<MapViewDirections
+              {destinationLocation.latitude && (
+                <MapViewDirections
                   origin={{
                     latitude: location.coords.latitude,
                     longitude: location.coords.longitude,
@@ -115,12 +135,12 @@ export default function App() {
                     latitude: destinationLocation?.latitude || 0,
                     longitude: destinationLocation?.longitude || 0,
                   }}
-                  apikey="AIzaSyDPxl2VRKGzYjUgQzVLCA90XSu97jroVmM"
-                  strokeWidth={3}
-                  strokeColor="hotpink"
-                  mode='WALKING'
+                  apikey={config.GOOGLE_API_KEY}
+                  strokeWidth={5}
+                  strokeColor="#88C625"
+                  mode={mapMode}
                 />
-                )}
+              )}
               <Marker
                 coordinate={{
                   latitude: pressedLocation?.latitude || 0,
@@ -128,21 +148,56 @@ export default function App() {
                 }}
               />
             </MapView>
-            <View className="absolute flex items-center justify-end w-full h-full pb-6">
-              {
-                showRouteButton ? (
-                  <Pressable
-                    className="bg-green-near-light p-4 rounded-full h-16 w-4/6 flex items-center justify-center shadow-lg"
-                    style={[styles.boxShadown, styles.androidShadow]}
-                    onPress={handleRouteButtonClick}
-                    accessibilityLabel='Clique para traçar a rota'
-                  >
-                    <Text className="text-white text-lg font-bold">Traçar Rota</Text>
-                  </Pressable>
-                ) : (
-                  <Navbar />
-                )
-              }
+            <View className="absolute flex items-center w-full pt-12 h-16">
+              <Navbar />
+            </View>
+            <View className="absolute flex items-center justify-end w-full h-full">
+              {showRouteButton && (
+                //<Pressable
+                //  className="bg-green-near-light p-4 rounded-full h-16 w-4/6 flex items-center justify-center shadow-lg"
+                //  style={[styles.boxShadown, styles.androidShadow]}
+                //  onPress={handleRouteButtonClick}
+                //  accessibilityLabel="Clique para traçar a rota"
+                //>
+                //  <Text className="text-white text-lg font-bold">
+                //    Traçar Rota
+                //  </Text>
+                //</Pressable>
+
+                <View className="relative flex items-center justify-end w-full ">
+                  <View className="w-full h-full mb-4 flex items-center justify-center w-4/6 h-28 bg-white rounded-2xl">
+                    <Text className="w-full h-1/3 flex items-center justify-center p-1 text-black text-lg font-bold text-center rounded-2xl">
+                      Traçar Rota
+                    </Text>
+                    <View className="w-full h-2/3 flex items-center justify-end flex-row">
+                      <Pressable
+                        className="w-1/3 bg-white p-4 rounded-2xl h-full flex items-center justify-center shadow-lg"
+                        style={[styles.boxShadown, styles.androidShadow]}
+                        accessibilityLabel="Clique para traçar a rota"
+                        onPress={() => defineMapMode("WALKING")}
+                      >
+                        <Text>W</Text>
+                      </Pressable>
+                      <Pressable
+                        className="w-1/3 bg-white p-4 rounded-2xl h-full flex items-center justify-center shadow-lg"
+                        style={[styles.boxShadown, styles.androidShadow]}
+                        accessibilityLabel="Clique para traçar a rota"
+                        onPress={() => defineMapMode("DRIVING")}
+                      >
+                        <Text>C</Text>
+                      </Pressable>
+                      <Pressable
+                        className="w-1/3 bg-white p-4 rounded-2xl h-full flex items-center justify-center shadow-lg"
+                        style={[styles.boxShadown, styles.androidShadow]}
+                        accessibilityLabel="Clique para traçar a rota"
+                        onPress={() => defineMapMode("DRIVING")}
+                      >
+                        <Text>C</Text>
+                      </Pressable>
+                    </View>
+                  </View>
+                </View>
+              )}
             </View>
           </View>
         )}
@@ -157,12 +212,12 @@ const styles = StyleSheet.create({
     shadowColor: "rgba(0, 0, 0, 0.5)",
     shadowOffset: {
       width: 6,
-      height: 6
+      height: 6,
     },
     shadowOpacity: 0.6,
     shadowRadius: 4,
   },
   androidShadow: {
-    elevation: 10
-  }
-})
+    elevation: 10,
+  },
+});
