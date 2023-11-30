@@ -18,7 +18,7 @@ import {
 } from "expo-location";
 import { useEffect, useState, useRef } from "react";
 import MapViewDirections from "react-native-maps-directions";
-import Svg from "./components/Svg";
+import Icon from "./components/Svg";
 import config from './config';
 
 export default function App() {
@@ -71,7 +71,7 @@ export default function App() {
     setShowRouteButton(true);
   };
 
-  const [mapMode, setMapMode] = useState("DRIVING");
+  const [mapMode, setMapMode] = useState("");
 
   const handleRouteButtonClick = (value) => {
     if (pressedLocation) {
@@ -95,7 +95,7 @@ export default function App() {
           // Mostra um indicador de loading enquanto o mapa está sendo carregado
           <View className="w-full h-full">
             <View className="w-full h-1/2 flex items-center justify-center">
-              <Svg />
+              <Icon iconName='LOGO' />
             </View>
             <ActivityIndicator
               className="w-full h-1/2"
@@ -165,34 +165,31 @@ export default function App() {
                 //</Pressable>
 
                 <View className="relative flex items-center justify-end w-full ">
-                  <View className="w-full h-full mb-4 flex items-center justify-center w-4/6 h-28 bg-white rounded-2xl">
-                    <Text className="w-full h-1/3 flex items-center justify-center p-1 text-black text-lg font-bold text-center rounded-2xl">
+                  <View className="mb-4 flex items-center justify-center w-4/6 h-28 bg-white rounded-2xl">
+                    <Text className="w-full text-gray-near h-1/3 flex items-center justify-center p-1 text-lg font-bold text-center rounded-2xl">
                       Traçar Rota
                     </Text>
                     <View className="w-full h-2/3 flex items-center justify-end flex-row">
                       <Pressable
-                        className="w-1/3 bg-white p-4 rounded-2xl h-full flex items-center justify-center shadow-lg"
-                        style={[styles.boxShadown, styles.androidShadow]}
+                        className={`w-1/3 ${mapMode === "WALKING" ? 'bg-gray-100' : 'bg-white'}  p-4 rounded-2xl h-full flex items-center justify-center`}
                         accessibilityLabel="Clique para traçar a rota"
                         onPress={() => defineMapMode("WALKING")}
                       >
-                        <Text>W</Text>
+                        <Icon iconName='WALKING' />
                       </Pressable>
                       <Pressable
-                        className="w-1/3 bg-white p-4 rounded-2xl h-full flex items-center justify-center shadow-lg"
-                        style={[styles.boxShadown, styles.androidShadow]}
+                        className={`w-1/3 ${mapMode === "DRIVING" ? 'bg-gray-100' : 'bg-white'}  p-4 rounded-2xl h-full flex items-center justify-center`}
                         accessibilityLabel="Clique para traçar a rota"
                         onPress={() => defineMapMode("DRIVING")}
                       >
-                        <Text>C</Text>
+                        <Icon iconName='DRIVING' />
                       </Pressable>
                       <Pressable
-                        className="w-1/3 bg-white p-4 rounded-2xl h-full flex items-center justify-center shadow-lg"
-                        style={[styles.boxShadown, styles.androidShadow]}
+                        className={`w-1/3 ${mapMode === "BICYCLING" ? 'bg-gray-100' : 'bg-white'}  p-4 rounded-2xl h-full flex items-center justify-center`}
                         accessibilityLabel="Clique para traçar a rota"
-                        onPress={() => defineMapMode("DRIVING")}
+                        onPress={() => defineMapMode("BICYCLING")}
                       >
-                        <Text>C</Text>
+                        <Icon iconName='BICYCLING' />
                       </Pressable>
                     </View>
                   </View>
