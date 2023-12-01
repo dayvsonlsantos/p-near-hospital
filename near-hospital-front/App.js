@@ -8,12 +8,10 @@ import {
   Image,
   TextInput,
 } from "react-native";
-import Navbar from "./components/Navbar";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import {
   requestForegroundPermissionsAsync,
   getCurrentPositionAsync,
-  LocationObject,
   watchPositionAsync,
   LocationAccuracy,
 } from "expo-location";
@@ -24,6 +22,7 @@ import config from './config';
 import MedicalFacilities from './json/medicalFacilitiesRecife'
 import MarkerIcon from "./assets/marker.png";
 import MarkerIconGray from "./assets/marker-gray.png";
+import FloatingButton from "./components/FloatingButton";
 
 export default function App() {
 
@@ -161,7 +160,7 @@ export default function App() {
                 longitudeDelta: 0.005,
               }}
               showsUserLocation
-              zoomControlEnabled
+              zoomControlEnabled={false}
               followsUserLocation
               provider={PROVIDER_GOOGLE}
               onPress={handleMapPress}
@@ -211,11 +210,14 @@ export default function App() {
                   className="flex items-start justify-start text-lg w-5/6 pl-8"
                 />
                 <View className="w-1/6 h-4/6 flex items-center justify-center">
-                  <Icon iconName={'SEARCH'}/>
+                  <Icon iconName={'SEARCH'} />
                 </View>
               </View>
             </View>
             <View className="absolute flex items-center justify-end w-full h-full">
+              <View className="absolute">
+                <FloatingButton className="" />
+              </View>
               {showRouteButton && (
 
                 <View className="relative flex items-center justify-end w-full ">
@@ -272,3 +274,4 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
 });
+
