@@ -21,6 +21,8 @@ import MapViewDirections from "react-native-maps-directions";
 import Icon from "./components/Svg";
 import config from './config';
 import MedicalFacilities from './json/medicalFacilitiesRecife'
+import MarkerIcon from "./assets/marker.png";
+import MarkerIconGray from "./assets/marker-gray.png";
 
 export default function App() {
 
@@ -105,7 +107,14 @@ export default function App() {
         longitude: longitude,
       },
       title: record[2], // Ou qualquer índice correspondente ao título
-      description: record[8], // Ou qualquer índice correspondente à descrição
+      description: record[11], // Ou qualquer índice correspondente à descrição
+
+      cnes: (record[6]).toString(),
+      especialidade: record[12],
+      tipo_servico: record[8],
+      endereco: record[9],
+      telefone: record[11],
+      horario: record[14],
     };
   });
 
@@ -167,14 +176,16 @@ export default function App() {
                   latitude: pressedLocation?.latitude || 0,
                   longitude: pressedLocation?.longitude || 0,
                 }}
+                icon={MarkerIconGray}
               />
               {markers.map((marker, index) => (
                 <Marker
                   key={index}
                   coordinate={marker.coordinate}
                   title={marker.title}
-                  description={marker.description}
                   onPress={handleMapPress}
+                  description={marker.especialidade}
+                  icon={MarkerIcon}
                 />
               ))}
             </MapView>
