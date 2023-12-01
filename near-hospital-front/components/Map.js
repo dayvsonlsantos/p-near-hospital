@@ -47,7 +47,6 @@ export default function Map({ location, mapRef }) {
         } else {
             setMapMode(value);
             handleRouteButtonClick();
-            closeRouteBar(false)
         }
     }
 

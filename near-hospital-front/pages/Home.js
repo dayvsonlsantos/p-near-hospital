@@ -13,6 +13,7 @@ import {
 // Componentes
 import Icon from "../components/Svg";
 import Map from '../components/Map';
+import FloatingButton from "../components/FloatingButton";
 
 export default function Home() {
 
@@ -80,7 +81,12 @@ export default function Home() {
                 </View>
             ) : (
                 <View className="w-full h-full">
-                    <Map location={location} mapRef={mapRef}/>
+                    <Map location={location} mapRef={mapRef} />
+                    <View className="absolute flex items-center justify-end w-full h-full">
+                        <View className="absolute">
+                            <FloatingButton />
+                        </View>
+                    </View>
                 </View>
             )}
         </View>
