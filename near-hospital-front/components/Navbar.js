@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet, TextInput } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 export default function Navbar() {
@@ -7,7 +7,9 @@ export default function Navbar() {
       className="flex items-center justify-center bg-white h-16 rounded-full w-4/6"
       style={[styles.boxShadown, styles.androidShadow]}
     >
-      <Text>Informe a especialidade</Text>
+      <TextInput
+        placeholder="Informe a especialidade"
+      />
       <StatusBar style="auto" />
     </View>
   );

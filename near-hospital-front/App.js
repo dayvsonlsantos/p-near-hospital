@@ -6,6 +6,7 @@ import {
   View,
   ActivityIndicator,
   Image,
+  TextInput,
 } from "react-native";
 import Navbar from "./components/Navbar";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
@@ -118,6 +119,16 @@ export default function App() {
     };
   });
 
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchTermChange = (text) => {
+    setSearchTerm(text);
+  };
+
+  const filteredMarkers = markers.filter((marker) =>
+    marker.especialidade.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <View className="border w-full h-screen">
       <View className="w-full h-full">
@@ -178,7 +189,7 @@ export default function App() {
                 }}
                 icon={MarkerIconGray}
               />
-              {markers.map((marker, index) => (
+              {filteredMarkers.map((marker, index) => (
                 <Marker
                   key={index}
                   coordinate={marker.coordinate}
@@ -190,7 +201,15 @@ export default function App() {
               ))}
             </MapView>
             <View className="absolute flex items-center w-full pt-12 h-16">
-              <Navbar />
+              <View
+                className="flex items-center justify-center bg-white h-16 rounded-full w-4/6"
+                style={[styles.boxShadown, styles.androidShadow]}
+              >
+                <TextInput
+                  placeholder="Informe a especialidade"
+                  onChangeText={handleSearchTermChange}
+                />
+              </View>
             </View>
             <View className="absolute flex items-center justify-end w-full h-full">
               {showRouteButton && (
