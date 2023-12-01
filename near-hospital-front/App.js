@@ -202,13 +202,17 @@ export default function App() {
             </MapView>
             <View className="absolute flex items-center w-full pt-12 h-16">
               <View
-                className="flex items-center justify-center bg-white h-16 rounded-full w-4/6"
+                className="flex flex-row items-center justify-center bg-white h-16 rounded-2xl w-5/6"
                 style={[styles.boxShadown, styles.androidShadow]}
               >
                 <TextInput
                   placeholder="Informe a especialidade"
                   onChangeText={handleSearchTermChange}
+                  className="flex items-start justify-start text-lg w-5/6 pl-8"
                 />
+                <View className="w-1/6 h-4/6 flex items-center justify-center">
+                  <Icon iconName={'SEARCH'}/>
+                </View>
               </View>
             </View>
             <View className="absolute flex items-center justify-end w-full h-full">
