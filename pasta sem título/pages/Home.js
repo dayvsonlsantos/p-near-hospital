@@ -1,9 +1,8 @@
-import React from 'react';
+import { StatusBar } from "expo-status-bar";
 import { Text, View } from "react-native";
-import FloatingButton from '../components/FloatingButton';
-import { StatusBar } from 'expo-status-bar';
+import FloatingButton from "../components/FloatingButton";
 
-export default function List() {
+export default function Home() {
     return (
         <View className="w-full h-screen ">
             <View className="absolute flex items-center justify-end w-full h-full">
@@ -11,7 +10,7 @@ export default function List() {
                     <FloatingButton className="" />
                 </View>
             </View>
-            <Text className="text-lg">Ola List</Text>
+            <Text className="text-lg">Ola Home</Text>
             <StatusBar style="auto" />
         </View>
     )
