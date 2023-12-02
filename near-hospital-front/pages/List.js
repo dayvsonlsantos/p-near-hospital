@@ -7,9 +7,7 @@ export default function List() {
     return (
         <View className="w-full h-screen ">
             <View className="absolute flex items-center justify-end w-full h-full">
-                <View className="absolute">
-                    <FloatingButton className="" />
-                </View>
+                <FloatingButton />
             </View>
             <Text className="text-lg">Ola List</Text>
             <StatusBar style="auto" />

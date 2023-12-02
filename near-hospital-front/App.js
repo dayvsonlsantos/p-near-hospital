@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -5,7 +6,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./pages/Home";
 import List from "./pages/List";
 import User from "./pages/User";
-import { StatusBar } from "expo-status-bar";
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +30,7 @@ export default function App() {
                     component={List}
                 ></Stack.Screen>
             </Stack.Navigator>
+            <StatusBar style="auto" />
         </NavigationContainer>
     );
 }
