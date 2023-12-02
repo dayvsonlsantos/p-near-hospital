@@ -3,12 +3,12 @@ import { Animated, TouchableWithoutFeedback, View } from "react-native";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 
-export default function FloatingButton() {
+export default function FloatingButton({optionFloating}) {
 
     const navigation = useNavigation();
 
     animation = new Animated.Value(0);
-    let open = false;
+    let open = {optionFloating} || false;
 
     toggleMenu = () => {
         const toValue = open ? 0 : 1;
