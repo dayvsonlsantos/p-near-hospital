@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import Icon from '../components/Svg';
+import usuarioService from '../services/UsuarioService';
 
 export default function Register() {
 
@@ -32,9 +33,14 @@ export default function Register() {
     function createAnAccoung() {
 
         if (password === confirmPassword) {
-            console.log(name)
-            console.log(email)
-            console.log(password)
+            let data = {
+                user_full_name: name,
+                user_email: email,
+                user_password: password,
+            }
+
+            usuarioService.cadastrar(data)
+
             console.log('Sucesso ao criar a conta')
         } else {
             console.log('Erro ao criar sua conta')
