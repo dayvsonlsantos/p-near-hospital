@@ -43,8 +43,8 @@ export default function User() {
                 </Pressable>
                 <Text className="font-semibold text-center w-full text-3xl text-gray-near">Perfil</Text>
             </View>
-            <View className="flex items-center w-full pt-12 h-20 mb-10">
-                <Text className='w-5/6 h-full mb-2 text-green-near-dark text-lg'>Nome completo:</Text>
+            <View className="flex items-center w-full mb-2 mt-10">
+                <Text className='w-5/6 mb-2 text-green-near-dark text-lg'>Nome completo:</Text>
                 <View
                     className="flex flex-row items-center justify-center bg-white h-16 rounded-2xl w-5/6"
                     style={[styles.boxShadown, styles.androidShadow]}
@@ -57,8 +57,8 @@ export default function User() {
                     />
                 </View>
             </View>
-            <View className="flex items-center w-full pt-12 h-20 mb-10">
-                <Text className='w-5/6 h-full mb-2 text-green-near-dark text-lg'>Email:</Text>
+            <View className="flex items-center w-full mb-2">
+                <Text className='w-5/6 mb-2 text-green-near-dark text-lg'>Email:</Text>
                 <View
                     className="flex flex-row items-center justify-center bg-white h-16 rounded-2xl w-5/6"
                     style={[styles.boxShadown, styles.androidShadow]}
@@ -72,8 +72,8 @@ export default function User() {
                     />
                 </View>
             </View>
-            <View className="flex items-center w-full pt-12 h-20 mb-10">
-                <Text className='w-5/6 h-full mb-2 text-green-near-dark text-lg'>Senha:</Text>
+            <View className="flex items-center w-full mb-2">
+                <Text className='w-5/6 mb-2 text-green-near-dark text-lg'>Senha:</Text>
                 <View
                     className="flex flex-row items-center justify-center bg-white h-16 rounded-2xl w-5/6"
                     style={[styles.boxShadown, styles.androidShadow]}
