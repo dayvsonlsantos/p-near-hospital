@@ -1,8 +1,7 @@
-![LumiBanner](https://user-images.githubusercontent.com/102249811/184333408-56256a09-788b-43c4-9f46-7650c8c6ec95.png)
 ![LineLumos](https://user-images.githubusercontent.com/102249811/184333446-af70cbe1-6a10-4a60-b529-7a764871b8dd.png)
 
 <h4 align="center"> 
-	• Lumos 🤝 Em Desenvolvimento •
+	• NearHospital 🤝 Em Desenvolvimento •
 </h4>
 
 <p align="center">
@@ -18,57 +17,49 @@
 
 ## ![link](https://user-images.githubusercontent.com/102249811/184334676-ed902c74-e1fc-44a8-828b-4c3eb1490767.png) Sobre
 
-Lumi é uma aplicação web que tem como foco ajudar você a encontrar aquele profissional, sempre com o foco em conectar quem precisa com quem sabe fazer. Acabando com seus problemas tanto na busca como na oferta de serviço de qualidade. 
+NearHospital, é uma aplicação mobile que tem como interesse ajudar você a encontrar aquele hospital ou clínica que tanto procura, sempre com o foco em conectar quem precisa com quem sabe fazer.
 
-Projeto desenvolvido durante o **Start** oferecido pela Rede Cidadã. 
+Projeto desenvolvido durante a faculdade de ADS, na faculdade Senac, para conclusão da cadeira de **Mobile**.
 
 ## ![link](https://user-images.githubusercontent.com/102249811/184334676-ed902c74-e1fc-44a8-828b-4c3eb1490767.png) Funcionalidades
 
-- [x] Ao abrir a aplicação em um dispositivo, o usuário poderá:
+- [x] Ao abrir a aplicação em um dispositivo mobile e aceitar o uso da localização, o usuário poderá:
 	  
-   - [x] navegar pela tela inicial da plataforma, visualizando os serviços disponíveis
-   - [x] realizar o seu cadastro / login no website; 
-
-- [x] Para visualizar mais detalhes sobre o serviço, o usuário precisará:
+   - [x] navegar pela tela inicial da plataforma, visualizando o mapa e sua localização.
+   - [x] realizar o seu cadastro / login no aplicativo; 
  
-   - [x] realizar o cadastro na plataforma, informando: 
+   - [x] Para realizar o cadastro na plataforma, será preciso informar: 
    
-      - [x] nome;
-      - [x] sobrenome;
+      - [x] nome completo;
       - [x] email;
-      - [x] telefone;
-      - [x] cpf;
       - [x] senha;
       - [x] confirmação de senha;
-      - [x] se deseja ser um prestador de serviço.
-      
       
    - [x] logar-se com o email e senha cadastrados
 
 - [x] Os usuários logados, podem:
 
-  - [x] acessar seu perfil, realizando a edição dos dados ou exclusão da conta
-  - [x] visualizar mais detalhes dos serviços disponíveis na plataforma
-  - [x] alterar seu perfil para prestador de serviço ou apenas usuário
-  
-  
-## ![link](https://user-images.githubusercontent.com/102249811/184334676-ed902c74-e1fc-44a8-828b-4c3eb1490767.png) Modelo de Desenvolvimento
-
-Se você deseja visualizar a organização do projeto em nosso Trello, você pode [clicar aqui](https://user-images.githubusercontent.com/102249811/184338147-3db0ada2-2a95-4e45-9667-cfbac0ce2a52.png) para baixar o documento. 
-
+  - [x] acessar seu perfil, realizando a edição dos dados.
 
 ## ![link](https://user-images.githubusercontent.com/102249811/184334676-ed902c74-e1fc-44a8-828b-4c3eb1490767.png) Tecnologias
 
-#### **Website**  ([React](https://reactjs.org/)
+#### **Website**  
+-   **[React Native](https://reactnative.dev/)**
 -   **[Axios](https://github.com/axios/axios)**
--   **[React Router](https://www.npmjs.com/package/react-router)**
--   **[Styled Components](https://styled-components.com/)**
--   **[React Icons](https://react-icons.github.io/react-icons/)**
--   **[CoreUI](https://www.npmjs.com/package/@coreui/react)**
--   **[Toastify](https://www.npmjs.com/package/react-toastify)**
--   **[CPF Check](https://github.com/flasd/cpf-check)**
+-   **[Fetch](https://github.com/allaboutapps/Fetch)**
+-   **[Vector Icons](https://github.com/expo/vector-icons)**
+-   **[Async Storage](https://docs.expo.dev/versions/latest/sdk/async-storage/)**
+-   **[Navigation](https://reactnavigation.org/)**
+-   **[Expo](https://expo.dev/)**   
+-   **[NativeWind](https://www.nativewind.dev/)**
+-   **[React Native Maps](https://github.com/react-native-maps/react-native-maps)**   
+-   **[React Native Maps Directions](https://github.com/bramus/react-native-maps-directions)**   
+-   **[React Native Settings](https://www.npmjs.com/package/react-native-settings)**   
+-   **[React Native SVG](https://github.com/software-mansion/react-native-svg/blob/main/USAGE.md)**   
+-   **[React Native Dotenv](https://github.com/zetachang/react-native-dotenv)**   
 
-> Veja o arquivo  [package.json](https://github.com/Start-Lumos/lumi-front/blob/main/package.json)
+
+> Veja o arquivo  [package.json](https://github.com/dayvsonlsantos/p-near-hospital/blob/main/near-hospital-front/package.json)
 
 
 #### **Server**  ([Node.js](https://nodejs.org/en/))
@@ -80,47 +71,29 @@ Se você deseja visualizar a organização do projeto em nosso Trello, você pod
 -   **[Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)**
 -   **[Bcrypt](https://www.npmjs.com/package/bcrypt)**
 -   **[dotENV](https://github.com/motdotla/dotenv)**
--   **[Multer](https://github.com/expressjs/multer)**
--   **[Nodemailer](https://www.npmjs.com/package/nodemailer)**
--   **[Fs](https://libraries.io/npm/fs)**
 
-> Veja o arquivo  [package.json](https://github.com/Start-Lumos/lumi-back/blob/main/API_01/package.json)
+> Veja o arquivo  [package.json](https://github.com/dayvsonlsantos/p-near-hospital/blob/main/near-hospital-back/package.json)
 
 
 #### []()**Utilitários**
 
--   Protótipo:  **[Figma](https://www.figma.com/)**  →  **[Protótipo (Lumi)](https://www.figma.com/file/cvW7golDdTOHpwteHsNREv/Projeto-Final-Lumi?node-id=5%3A2)**
+-   Protótipo:  **[Figma](https://www.figma.com/)**  →  **[Protótipo (NearHospital)](https://www.figma.com/proto/woKFfWRBMESifDzbS9bgx0/NearHospital?page-id=0%3A1&type=design&node-id=2-390&viewport=1104%2C518%2C0.32&t=QnxtsH7Gbvq30bca-1&scaling=scale-down&starting-point-node-id=2%3A390&mode=design)**
 -   Editor:  **[Visual Studio Code](https://code.visualstudio.com/)**
--   Teste de API:  **[Insomnia](https://insomnia.rest/)**
--   Fontes:  **[Poppins](https://fonts.google.com/specimen/Poppins)**
+-   Teste de API:  **[Postman](https://www.postman.com/)**
 
 ## ![link](https://user-images.githubusercontent.com/102249811/184334676-ed902c74-e1fc-44a8-828b-4c3eb1490767.png) Design
 
-### Web
-
-<div style="display: inline;">
-	<img alt="" src='https://user-images.githubusercontent.com/102249811/185459892-b5b16f75-5d7e-400a-8e25-6db3a1054803.png' style="width: 30%">
-	<img alt="" src='https://user-images.githubusercontent.com/102249811/185460858-78b2e668-3383-435b-b02b-973f502b7785.png' style="width: 30%">
-</div>
-<div style="display: inline;">
-	<img alt="" src='https://user-images.githubusercontent.com/102249811/185460107-31c227b2-631f-476b-9c01-9b2a190928e4.png' style="width: 30%">
-	<img alt="" src='https://user-images.githubusercontent.com/102249811/185460897-4932a58e-9209-45cc-a9aa-1b99b9e4bff0.png' style="width: 30%">
-</div>
-<div style="display: inline;">
-	<img alt="" src='https://user-images.githubusercontent.com/102249811/185461102-9361179e-a017-4df0-b3c6-c69a413eecff.png' style="width: 30%">
-	<img alt="" src='https://user-images.githubusercontent.com/102249811/185460957-67d1bb45-34e0-4fcf-8263-9d07be0d35fc.png' style="width: 30%">
-</div>
 
 ### Mobile
 
 <div style="display: inline;">
-	<img alt="" src='https://user-images.githubusercontent.com/102249811/185462332-fd77996e-6b01-4ff4-8a24-c255317eeadc.png' style="width: 30%">
-	<img alt="" src='https://user-images.githubusercontent.com/102249811/185462371-589b21ab-0ccc-4400-8f33-c2669661c1c9.png' style="width: 30%">
+	<img alt="" src='https://github.com/dayvsonlsantos/p-near-hospital/assets/102249811/049b1cd2-80fc-44fc-a189-5dc777dc76f7' style="width: 30%">
+	<img alt="" src='https://github.com/dayvsonlsantos/p-near-hospital/assets/102249811/5ba79a4b-f122-4810-a68e-e06cb30d8f05' style="width: 30%">
 </div>
 
 <div style="display: inline;">
-	<img alt="" src='https://user-images.githubusercontent.com/102249811/185462399-89710c78-4f50-4583-9da6-a9932122d976.png' style="width: 30%">
-	<img alt="" src='https://user-images.githubusercontent.com/102249811/185462444-c0ebfe89-9462-4db7-8ff1-dfbdd71faa80.png' style="width: 30%">	
+	<img alt="" src='https://github.com/dayvsonlsantos/p-near-hospital/assets/102249811/fd8a762a-3329-45f4-8453-f4cbd2357d02' style="width: 30%">
+	<img alt="" src='https://github.com/dayvsonlsantos/p-near-hospital/assets/102249811/4c36766e-2ce8-4d1f-a434-0fbfcbe698ee' style="width: 30%">	
 </div>
 
 ## ![link](https://user-images.githubusercontent.com/102249811/184334676-ed902c74-e1fc-44a8-828b-4c3eb1490767.png) Autores
@@ -135,24 +108,31 @@ Se você deseja visualizar a organização do projeto em nosso Trello, você pod
    </td>
    
    <td align="center">
-      <a href="https://github.com/JonassMarquess">
-        <img alt="" style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/99907704?v=4" width="100px;" alt=""/>
+      <a href="#">
+        <img alt="" style="border-radius: 50%;" src="https://github.com/dayvsonlsantos/p-near-hospital/assets/102249811/a01154cd-50fb-4cad-96e9-c74a1276586b" width="100px;" alt=""/>
         <br />
-        <sub><b>Jonas Rafael</b></sub>
+        <sub><b>Daniel Oliveira</b></sub>
    </td>
    
    <td align="center">
-      <a href="https://github.com/Vitorgabri3l">
-        <img alt="" style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/102758602?v=4" width="100px;" alt=""/>
+      <a href="#">
+        <img alt="" style="border-radius: 50%;" src="https://github.com/dayvsonlsantos/p-near-hospital/assets/102249811/9a9cf70a-7e7b-49b3-9ce1-2cde7671b488" width="100px;" alt=""/>
         <br />
-        <sub><b>Vitor Gabriel</b></sub>
+        <sub><b>Reginaldo Alves</b></sub>
+   </td>
+
+   <td align="center">
+      <a href="#">
+        <img alt="" style="border-radius: 50%;" src="https://github.com/dayvsonlsantos/p-near-hospital/assets/102249811/25c7072b-0deb-4f4e-aec4-5253cba93dd4" width="100px;" alt=""/>
+        <br />
+        <sub><b>Natan Gonçalves</b></sub>
    </td>
    
    <td align="center">
-      <a href="https://github.com/vitorxst">
-        <img alt="" style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/108552657?v=4" width="100px;" alt=""/>
+      <a href="#">
+        <img alt="" style="border-radius: 50%;" src="https://github.com/dayvsonlsantos/p-near-hospital/assets/102249811/6a860502-91ce-4ff2-8648-56245363c7ba" width="100px;" alt=""/>
         <br />
-        <sub><b>Vitoria Regina</b></sub>
+        <sub><b>Victor Lucas</b></sub>
    </td>
    
  </tr>
@@ -162,8 +142,8 @@ Se você deseja visualizar a organização do projeto em nosso Trello, você pod
 
 ## ![link](https://user-images.githubusercontent.com/102249811/184334676-ed902c74-e1fc-44a8-828b-4c3eb1490767.png) Licença
 
-O projeto se encontra sob a licença [GPLv3](https://github.com/Start-Lumos/lumi-front/blob/main/license).
+O projeto se encontra sob a licença [GPLv3](https://github.com/dayvsonlsantos/p-near-hospital/blob/main/near-hospital-front/license.md).
 
-Desenvolvido pela equipe Lumos 💜
+Desenvolvido pela equipe NearHospital.
 
 ![Line](https://user-images.githubusercontent.com/102249811/184343333-e5ebb9aa-14ea-4f00-87d2-9cf88faf05a5.png)
