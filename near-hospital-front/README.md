@@ -21,6 +21,20 @@ NearHospital, é uma aplicação mobile que tem como interesse ajudar você a en
 
 Projeto desenvolvido durante a faculdade de ADS, na faculdade Senac, para conclusão da cadeira de **Mobile**.
 
+## Instalação
+
+```bash
+$ npm install
+```
+
+## Iniciar o Aplicativo
+
+Renomear o arquivo '.env.example' para '.env'
+
+```bash
+$ npx expo start
+```
+
 ## ![link](https://user-images.githubusercontent.com/102249811/184334676-ed902c74-e1fc-44a8-828b-4c3eb1490767.png) Funcionalidades
 
 - [x] Ao abrir a aplicação em um dispositivo mobile e aceitar o uso da localização, o usuário poderá:
