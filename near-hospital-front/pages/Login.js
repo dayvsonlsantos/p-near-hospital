@@ -9,11 +9,11 @@ import { useAuth } from '../AuthContext';
 
 export default function Login() {
 
-    const { login } = useAuth();
+    const { login, setUser } = useAuth();
     const navigation = useNavigation();
 
-    const [email, setEmail] = useState('Teste')
-    const [password, setPassword] = useState('Teste')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const getEmail = (text) => {
         setEmail(text);
@@ -33,7 +33,8 @@ export default function Login() {
                 console.log("Token:", response.token);
 
                 // Chame a função login do contexto de autenticação
-                login();
+                login(response.user);
+                setUser(response.user);
 
                 // Navegar para a tela inicial (Home)
                 navigation.navigate('Home');

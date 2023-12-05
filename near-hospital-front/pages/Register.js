@@ -10,9 +10,9 @@ export default function Register() {
     const navigation = useNavigation();
 
     const [name, setName] = useState('')
-    const [email, setEmail] = useState('Teste')
-    const [password, setPassword] = useState('Teste')
-    const [confirmPassword, setConfirmPassword] = useState('Teste')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
 
     const getName = (text) => {
         setName(text);

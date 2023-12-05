@@ -23,6 +23,8 @@ export default function Home() {
 
     const { isLoggedIn } = useAuth();
 
+    const { userData } = useAuth();
+
     const navigation = useNavigation();
 
     // Loading
@@ -91,6 +93,7 @@ export default function Home() {
                 <View className="w-full h-full">
                     <Map location={location} mapRef={mapRef} />
                     <View className="absolute flex items-center justify-end w-full h-full">
+
                         {isLoggedIn ? (
                             <View className="flex items-end justify-center w-full mr-8 mb-36">
                                 <Pressable
@@ -104,7 +107,7 @@ export default function Home() {
                                 <Pressable
                                     className="flex items-center justify-center w-14 h-14 rounded-full bg-white"
                                     style={[styles.boxShadown, styles.androidShadow]}
-                                    onPress={() => navigation.navigate('User')}
+                                    onPress={() => navigation.navigate('User', { userData })}
                                 >
                                     <Entypo name="user" size={24} color="#88C625" />
                                 </Pressable>
@@ -122,8 +125,9 @@ export default function Home() {
                         )}
                     </View>
                 </View>
-            )}
-        </View>
+            )
+            }
+        </View >
     )
 }
 

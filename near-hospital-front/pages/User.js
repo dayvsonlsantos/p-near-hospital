@@ -1,17 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import FloatingButton from '../components/FloatingButton';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Entypo } from '@expo/vector-icons';
+import { useAuth } from '../AuthContext';
+import usuarioService from '../services/UsuarioService';
+import AsyncStorage from "@react-native-async-storage/async-storage"; // Certifique-se de importar corretamente aqui
 
 export default function User() {
-
     const navigation = useNavigation();
+    const route = useRoute();
+    const { user } = useAuth();
 
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('Teste')
-    const [password, setPassword] = useState('Teste')
+    // const { userData } = route.params;
+    const [name, setName] = useState(user?.userFullName || '');
+    const [email, setEmail] = useState(user?.userEmail || '');
+    const [password, setPassword] = useState('');
 
     const changeName = (text) => {
         setName(text);
@@ -25,11 +29,38 @@ export default function User() {
         setPassword(text);
     };
 
-    function Save() {
-        console.log(name)
-        console.log(email)
-        console.log(password)
-    }
+    const Save = async () => {
+        try {
+            const updatedUserData = {
+                userFullName: name,
+                userEmail: email,
+            };
+
+            const token = await AsyncStorage.getItem('token');
+            const userId = user._id;
+
+            const updateResponse = await usuarioService.atualizarUsuario(userId, updatedUserData, token);
+
+            if (updateResponse.success) {
+                // Atualiza o estado local para refletir todas as mudanças
+                setName(updatedUserData.userFullName);
+                setEmail(updatedUserData.userEmail);
+
+                // Adicione lógica semelhante para outros campos, se necessário
+
+                console.log("Usuário atualizado com sucesso:", updateResponse.user);
+
+                // Navega de volta para a tela Home
+                navigation.navigate('Home', { updatedUserData });
+            } else {
+                console.error("Erro ao atualizar o usuário:", updateResponse.error);
+            }
+        } catch (error) {
+            console.error("Erro ao atualizar o usuário:", error);
+        }
+    };
+
+
 
     return (
         <View className="w-full h-screen">
@@ -103,7 +134,7 @@ export default function User() {
             </View>
             <StatusBar style="auto" />
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({

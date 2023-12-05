@@ -23,7 +23,7 @@ module.exports = {
             return res.status(500).json(user);
         }
     },
-    
+
     //Dados do usuário
 
     async dataUser(req) {
@@ -41,30 +41,36 @@ module.exports = {
     async autenticacaoLogin(req) {
         const { userEmail, userPassword } = req;
         const user = await User.findOne({ userEmail });
-        if (user == null) {
+    
+        if (user === null) {
+            console.log("Usuário não encontrado para o email:", userEmail);
             return false;
-
-        } else {
-            const verificarSenha = await bcrypt.compare(userPassword, user.userPassword);
-            if (verificarSenha) {
-                let token = null;
-                try {
-                    token = jwt.sign({
-                        _id: user._id,
-                    },
-                        process.env.SECRET,
-                    );
-
-                } catch (error) {
-                    console.log(`Erro ao gerar token: ${error}`);
-                }
+        }
+    
+        const verificarSenha = await bcrypt.compare(userPassword, user.userPassword);
+    
+        if (verificarSenha) {
+            let token = null;
+    
+            try {
+                token = jwt.sign({ _id: user._id }, process.env.SECRET);
+            } catch (error) {
+                console.log(`Erro ao gerar token: ${error}`);
+            }
+    
+            if (token) {
+                console.log("Login bem-sucedido. Token gerado:", token);
                 return { user, token };
             } else {
+                console.log("Token não foi gerado corretamente.");
                 return false;
             }
-
+        } else {
+            console.log("Senha inválida para o usuário:", userEmail);
+            return false;
         }
     },
+    
 
     //Apagar usuário
 
@@ -114,14 +120,27 @@ module.exports = {
     async updateData(req, res) {
         const { _id, userFullName, userEmail } = req.body;
         const data = { userFullName, userEmail };
-        const user = await User.findOneAndUpdate({ _id }, data, { new: true });
-        if (user == null) {
-            return res.json({ erro: "Erro ao encontrar o usuário" });
-        } else {
-            return res.json(user);
+
+        console.log("ID do usuário:", req.decoded._id); // Use req.decoded ao invés de req.id
+
+        const user = await User.findOne({ _id: req.decoded._id }); // Use req.decoded._id ao invés de _id
+
+        if (!user) {
+            return res.status(404).json({ erro: "Usuário não encontrado" });
+        }
+
+        try {
+            const updatedUser = await User.findOneAndUpdate({ _id: req.decoded._id }, data, { new: true });
+
+            return res.json(updatedUser);
+        } catch (error) {
+            console.error("Erro ao atualizar o usuário:", error);
+            return res.status(500).json({ erro: "Erro interno do servidor" });
         }
     },
-    
+
+
+
     //Para teste no Insomnia
 
     async searchUserId(req, res) {
