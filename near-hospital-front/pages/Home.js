@@ -16,7 +16,12 @@ import Map from '../components/Map';
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
+
+import { useAuth } from '../AuthContext';
+
 export default function Home() {
+
+    const { isLoggedIn } = useAuth();
 
     const navigation = useNavigation();
 
@@ -86,23 +91,35 @@ export default function Home() {
                 <View className="w-full h-full">
                     <Map location={location} mapRef={mapRef} />
                     <View className="absolute flex items-center justify-end w-full h-full">
-                        <View className="flex items-end justify-center w-full mr-8 mb-36">
-                            <Pressable
-                                className="flex items-center justify-center w-14 h-14 mb-2 rounded-full bg-white"
-                                style={[styles.boxShadown, styles.androidShadow]}
-                                onPress={() => navigation.navigate('List')}
-                            >
-                                <Entypo name="list" size={24} color="#88C625" />
-                            </Pressable>
+                        {isLoggedIn ? (
+                            <View className="flex items-end justify-center w-full mr-8 mb-36">
+                                <Pressable
+                                    className="flex items-center justify-center w-14 h-14 mb-2 rounded-full bg-white"
+                                    style={[styles.boxShadown, styles.androidShadow]}
+                                    onPress={() => navigation.navigate('List')}
+                                >
+                                    <Entypo name="list" size={24} color="#88C625" />
+                                </Pressable>
 
-                            <Pressable
-                                className="flex items-center justify-center w-14 h-14 rounded-full bg-white"
-                                style={[styles.boxShadown, styles.androidShadow]}
-                                onPress={() => navigation.navigate('Login')}
-                            >
-                                <Entypo name="user" size={24} color="#88C625" />
-                            </Pressable>
-                        </View>
+                                <Pressable
+                                    className="flex items-center justify-center w-14 h-14 rounded-full bg-white"
+                                    style={[styles.boxShadown, styles.androidShadow]}
+                                    onPress={() => navigation.navigate('User')}
+                                >
+                                    <Entypo name="user" size={24} color="#88C625" />
+                                </Pressable>
+                            </View>
+                        ) : (
+                            <View className="flex items-end justify-center w-full mr-8 mb-36">
+                                <Pressable
+                                    className="flex items-center justify-center w-14 h-14 rounded-full bg-white"
+                                    style={[styles.boxShadown, styles.androidShadow]}
+                                    onPress={() => navigation.navigate('Login')}
+                                >
+                                    <Entypo name="user" size={24} color="#88C625" />
+                                </Pressable>
+                            </View>
+                        )}
                     </View>
                 </View>
             )}

@@ -1,11 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import Icon from '../components/Svg';
+import usuarioService from '../services/UsuarioService';
+import AsyncStorage from "@react-native-async-storage/async-storage"; // Certifique-se de importar corretamente aqui
+import { useAuth } from '../AuthContext';
 
 export default function Login() {
 
+    const { login } = useAuth();
     const navigation = useNavigation();
 
     const [email, setEmail] = useState('Teste')
@@ -19,10 +23,42 @@ export default function Login() {
         setPassword(text);
     };
 
-    function Save() {
-        console.log(email)
-        console.log(password)
+    async function loginAnAccount() {
+        try {
+            const response = await usuarioService.login({ userEmail: email, userPassword: password });
+
+            if (response.token) {
+                await AsyncStorage.setItem('token', response.token);
+                console.log("Login bem-sucedido");
+                console.log("Token:", response.token);
+
+                // Chame a função login do contexto de autenticação
+                login();
+
+                // Navegar para a tela inicial (Home)
+                navigation.navigate('Home');
+            } else {
+                console.log("Login mal-sucedido");
+                console.error("Erro:", response.error);
+            }
+        } catch (error) {
+            console.error("Erro na solicitação:", error);
+        }
     }
+
+    useEffect(() => {
+        async function checkAuthentication() {
+            const token = await AsyncStorage.getItem('token');
+            if (token) {
+                console.log("Usuário autenticado");
+                console.log("Token:", token);
+            } else {
+                console.log("Usuário não autenticado");
+            }
+        }
+
+        checkAuthentication();
+    }, []);
 
     return (
         <View className="w-full h-screen">
@@ -70,7 +106,7 @@ export default function Login() {
                     </Pressable>
                     <Pressable
                         className="flex items-center justify-center mt-16 bg-green-near-light rounded-2xl w-32 h-14"
-                        onPress={() => Save()}
+                        onPress={() => loginAnAccount()}
                     >
                         <Text className="text-white font-bold text-lg">Entrar</Text>
                     </Pressable>

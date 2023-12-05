@@ -34,11 +34,12 @@ export default function Register() {
 
         if (password === confirmPassword) {
             let data = {
-                user_full_name: name,
-                user_email: email,
-                user_password: password,
+                userFullName: name,
+                userEmail: email,
+                userPassword: password,
             }
 
+            console.log(data)
             usuarioService.cadastrar(data)
 
             console.log('Sucesso ao criar a conta')
