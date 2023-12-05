@@ -142,7 +142,7 @@ Projeto desenvolvido durante a faculdade de ADS, na faculdade Senac, para conclu
 
 ## ![link](https://user-images.githubusercontent.com/102249811/184334676-ed902c74-e1fc-44a8-828b-4c3eb1490767.png) Licença
 
-O projeto se encontra sob a licença [GPLv3](https://github.com/Start-Lumos/lumi-front/blob/main/license).
+O projeto se encontra sob a licença [GPLv3](https://github.com/dayvsonlsantos/p-near-hospital/blob/main/near-hospital-back/license.md).
 
 Desenvolvido pela equipe NearHospital.
 
